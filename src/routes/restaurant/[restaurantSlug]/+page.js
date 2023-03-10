@@ -14,6 +14,6 @@ export async function load({ params }) {
       )`)
     .eq('slug', params.restaurantSlug)
     .single();
-  console.log(data)
+
   return { restaurant: data };
 }
