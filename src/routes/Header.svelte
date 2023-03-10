@@ -6,15 +6,8 @@
   import { user } from "../stores/authStore";
   import { supabase } from "$lib/utils/SupabaseClient";
 
-  let currentUser;
-
-  user.subscribe((user) => {
-    console.log(user);
-    currentUser = user;
-  });
-
   const logout = async () => {
-    await supabase.auth.signOut();
+    const { error } = await supabase.auth.signOut();
   };
 </script>
 
@@ -41,12 +34,13 @@
       >
         <a href="/register">Register</a>
       </li>
-      <li>
-        {#if currentUser}
-          <a on:click={logout} href="#top"
-            >Log out <small>({currentUser.email})</small></a
-          >{/if}
-      </li>
+      {#if $user}
+        <li>
+          <a on:click={logout} href="#top">
+            Log out <small>({$user.email})</small>
+          </a>
+        </li>
+      {/if}
     </ul>
     <svg viewBox="0 0 2 3" aria-hidden="true">
       <path d="M0,0 L0,3 C0.5,3 0.5,3 1,2 L2,0 Z" />
@@ -54,7 +48,7 @@
   </nav>
 
   <div class="corner">
-    <a href="https://github.com/sveltejs/kit">
+    <a href="https://github.com/fleet-co/guyMichelin">
       <img src={github} alt="GitHub" />
     </a>
   </div>
