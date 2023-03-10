@@ -1,6 +1,7 @@
 <script>
 // @ts-nocheck
 	import cardImg from "../lib/images/libanese-resto.png"
+
 	let container;
 	let map;
 	let zoom = 21;
@@ -8,6 +9,24 @@
 	let input;
 
 </script>
+
+<div class="restaurant-card">
+	<img class="image-du-resto"src={cardImg} alt=""/>
+	<div class="details-container">
+	<p class="card-title">
+		MAGASIN DE POULET
+		</p>
+		<p class="emoji-de-lenfer">
+			😍
+			🫃🏻
+			💸
+			🤤
+		</p>
+		<p class="pas-de-marge">
+			voir en details =>
+		</p>
+	</div>
+</div>
 
 <style>
 	.restaurant-card {
@@ -57,21 +76,3 @@
 	}
 
 </style>
-
-<div class="restaurant-card">
-	<img class="image-du-resto"src={cardImg} alt=""/>
-	<div class="details-container">
-	<p class="card-title">
-		MAGASIN DE POULET
-		</p>
-		<p class="emoji-de-lenfer">
-			😍
-			🫃🏻
-			💸
-			🤤
-		</p>
-		<p class="pas-de-marge">
-			voir en details =>
-		</p>
-	</div>
-</div>
