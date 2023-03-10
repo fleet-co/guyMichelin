@@ -1,12 +1,10 @@
 <script>
-  import { createClient } from "@supabase/supabase-js";
+  import { supabase } from "$lib/utils/SupabaseClient";
   import { onMount } from "svelte";
+
   let restaurants = [];
   let error = "";
-  const supabase = createClient(
-    "https://qhdlalgoiabufsxbmeha.supabase.co",
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFoZGxhbGdvaWFidWZzeGJtZWhhIiwicm9sZSI6ImFub24iLCJpYXQiOjE2Nzg0Mzg1MjUsImV4cCI6MTk5NDAxNDUyNX0.OSUXbV-zMO3ZOuPWLD9XpTcDtAmdNf44FT13ZjEFZ-8"
-  );
+
   onMount(async () => {
     const { data, error } = await supabase.from("restaurants").select();
 
