@@ -4,12 +4,18 @@
   import github from "$lib/images/github.svg";
 
   import { user } from "../stores/authStore";
+  import { supabase } from "$lib/utils/SupabaseClient";
 
   let currentUser;
 
   user.subscribe((user) => {
+    console.log(user);
     currentUser = user;
   });
+
+  const logout = async () => {
+    await supabase.auth.signOut();
+  };
 </script>
 
 <header>
@@ -32,8 +38,19 @@
       >
         <a href="/restaurant">Restaurant</a>
       </li>
+      <li aria-current={$page.url.pathname === "/login" ? "page" : undefined}>
+        <a href="/login">Login</a>
+      </li>
+      <li
+        aria-current={$page.url.pathname === "/register" ? "page" : undefined}
+      >
+        <a href="/register">Register</a>
+      </li>
       <li>
-        {#if currentUser}Session OK : {currentUser.email}{:else}No session{/if}
+        {#if currentUser}
+          <a on:click={logout} href="#top"
+            >Log out <small>({currentUser.email})</small></a
+          >{/if}
       </li>
     </ul>
     <svg viewBox="0 0 2 3" aria-hidden="true">
