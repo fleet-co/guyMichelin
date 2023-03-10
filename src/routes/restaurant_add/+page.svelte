@@ -2,17 +2,20 @@
     import { writable } from 'svelte/store';
     import PlaceService from '$lib/utils/PlaceService';
     import { supabase } from "$lib/utils/SupabaseClient";
+    const placeService = new PlaceService();
 
     const restaurantInformation = writable({
         name: null,
         address: null,
+        longitude: 0,
+        latitude: 0,
+        google_place_id:0,
     }) 
 
     let googleData;
-    let suggestions = [];
+    let suggestions;
 
     const handleChange = async (e) => {
-        const placeService = new PlaceService();
         let suggestionsFromApi
         if ((e.target.value).length > 5) {
             suggestionsFromApi = await placeService.getPlaceIdFromText(e.target.value);
@@ -28,15 +31,23 @@
             created_at: new Date(), 
             name: $restaurantInformation.name,
             address:$restaurantInformation.address,
+            longitude: $restaurantInformation.longitude,
+            latitude: $restaurantInformation.latitude,
+            google_place_id: $restaurantInformation.google_place_id
             } 
         )
         return {data, error}
 	}
 
     const handleSelect = async (suggestion) => {
+        console.log(suggestion)
         const placeId = suggestion.place_id;
         const addressFromApi = await placeService.getAddressForPlaceId(placeId);
         googleData = addressFromApi
+        $restaurantInformation.address = suggestion.description
+        $restaurantInformation.latitude = googleData.lat
+        $restaurantInformation.longitude = googleData.lng
+        $restaurantInformation.google_place_id = suggestion.place_id
     };
 </script>
 
@@ -47,21 +58,18 @@
     <input type="text" bind:value={$restaurantInformation.name}/>
     <label>Address</label>
     <input type="text" bind:value={$restaurantInformation.address} on:input={handleChange}/>
-    {console.log(suggestions)}
-    {#each suggestions as suggestion}
-        {console.log("UNITAIRE",suggestion)}
-        <!-- <p>{suggestion.description}</p> -->
-    {/each}
-    
+    {#if suggestions}
+        <ul>
+            {#each suggestions as suggestion}
+            <li><div on:click={handleSelect(suggestion)}>{suggestion.description}</div></li>
+            {/each}
+        </ul>
+    {/if}
+
     <div class='buttons'>
         <button on:click={handleOnSubmit}>create</button>
     </div>
 </div>
-
-
-<p>
-	{JSON.stringify($restaurantInformation, 0, 2)}</p>
-
 
 <style>
     .content {
