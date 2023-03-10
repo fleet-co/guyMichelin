@@ -4,16 +4,8 @@
   import Button from "../components/Button.svelte";
   import { goto } from "$app/navigation";
 
-  import { supabase } from "$lib/utils/SupabaseClient.js";
-  import { onMount } from "svelte";
-
-  let restaurants = [];
+  export let restaurants;
   let searchRestaurant = "";
-
-  onMount(async () => {
-    const { data, error } = await supabase.from("restaurants").select();
-    restaurants = data;
-  });
 </script>
 
 <p class="title">Guy Michelin</p>

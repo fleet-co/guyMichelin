@@ -1,31 +1,37 @@
 <script>
-// @ts-nocheck
+  // @ts-nocheck
 
-	let container;
-	let map;
-	let zoom = 21;
-  let center = {lat: 48.878585, lng: 2.325271};
-	let input;
+  let container;
+  let map;
+  let zoom = 17;
+  let center = { lat: 48.878585, lng: 2.325271 };
 
-  import { onMount } from 'svelte';
+  export let restaurants;
 
-	onMount(async () => {
-		map = new google.maps.Map(container, {
+  import { afterUpdate } from "svelte";
+
+  afterUpdate(async () => {
+    map = new google.maps.Map(container, {
       zoom,
-			center,
-		});
-		const marker = new google.maps.Marker({
-			position: {lat: 48.878585, lng: 2.325271},
-			map: map,
-  	});
-	});
+      center,
+    });
+    console.log(restaurants, "");
+
+    restaurants.map((r) => {
+      console.log(r.latitude, r.longitude);
+      const marker = new google.maps.Marker({
+        position: { lat: r.latitude, lng: r.longitude },
+        map: map,
+      });
+    });
+  });
 </script>
 
+<div class="full-screen" bind:this={container} />
+
 <style>
-.full-screen {
+  .full-screen {
     width: 100%;
     height: 100%;
-}
+  }
 </style>
-
-<div class="full-screen" bind:this={container}></div>
