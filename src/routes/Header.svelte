@@ -21,6 +21,11 @@
       <li aria-current={$page.url.pathname === "/" ? "page" : undefined}>
         <a href="/">Home</a>
       </li>
+      <li
+        aria-current={$page.url.pathname === "/restaurant" ? "page" : undefined}
+      >
+        <a href="/restaurant">Restaurant</a>
+      </li>
       <li>
         {#if session}Session OK{:else}No session{/if}
       </li>
@@ -107,7 +112,6 @@
     border: var(--size) solid transparent;
     border-top: var(--size) solid var(--color-theme-1);
   }
-
   nav a {
     display: flex;
     height: 100%;
