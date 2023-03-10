@@ -3,7 +3,13 @@
   import logo from "$lib/images/svelte-logo.svg";
   import github from "$lib/images/github.svg";
 
-  export let session;
+  import { user } from "../stores/authStore";
+
+  let currentUser;
+
+  user.subscribe((user) => {
+    currentUser = user;
+  });
 </script>
 
 <header>
@@ -27,7 +33,7 @@
         <a href="/restaurant">Restaurant</a>
       </li>
       <li>
-        {#if session}Session OK{:else}No session{/if}
+        {#if currentUser}Session OK : {currentUser.email}{:else}No session{/if}
       </li>
     </ul>
     <svg viewBox="0 0 2 3" aria-hidden="true">

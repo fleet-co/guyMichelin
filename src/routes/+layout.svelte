@@ -2,22 +2,12 @@
   import Header from "./Header.svelte";
   import "./styles.css";
 
-  import { invalidate } from "$app/navigation";
-  import { onMount } from "svelte";
+  import { user } from "../stores/authStore.js";
+  import { supabase } from "$lib/utils/SupabaseClient";
 
-  export let data;
-
-  // Reactive statement : supabase is updated when data changes
-  $: ({ supabase } = data);
-
-  onMount(() => {
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange(() => {
-      invalidate("supabase:auth");
-    });
-
-    return () => subscription.unsubscribe();
+  supabase.auth.onAuthStateChange((_, session) => {
+    user.set(session?.user);
+    console.log("login stored");
   });
 </script>
 
