@@ -8,9 +8,8 @@ export async function load({ params }) {
       *,
       reviews (
         *,
-        profiles(
-          id,
-          lastname
+        users (
+          *
         )
       )`)
     .eq('slug', params.restaurantSlug)

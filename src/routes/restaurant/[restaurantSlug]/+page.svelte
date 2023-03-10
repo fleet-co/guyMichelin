@@ -1,6 +1,5 @@
 <script>
   // @ts-nocheck
-
   /** @type {import('./$types').PageData} */
   export let data;
   const restaurant = data.restaurant;
@@ -32,6 +31,6 @@
 
   <div>
     <p>"{review.comment}"</p>
-    <div />
+    <div>{review.users.firstname}</div>
   </div>
 {/each}
