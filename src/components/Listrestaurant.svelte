@@ -18,9 +18,11 @@
     onClick={() => goto("/restaurant_add")}
   />
 </div>
-{#each restaurants as restaurant}
-  <Restaurantcard {restaurant} />
-{/each}
+<div class="verticalContainer">
+  {#each restaurants as restaurant}
+    <Restaurantcard {restaurant} />
+  {/each}
+</div>
 
 <style>
   .mainInput {
@@ -48,6 +50,14 @@
   .horizontalContainer {
     display: flex;
     flex-direction: row;
+    gap: 16px;
+  }
+  .verticalContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    overflow: scroll;
     gap: 16px;
   }
 </style>
