@@ -73,7 +73,6 @@
 	.title {
 		color: white;
 		font-family: "Inter";
-		font-style: normal;
 		font-weight: 700;
 		font-size: 40px;
 		line-height: 48px;
