@@ -35,6 +35,7 @@
 		width: 40vw;
 		height: 100vh;
 		gap: 16px;
+		overflow: scroll;
 	}
 	.mapContainer {
 		width: 60vw;
