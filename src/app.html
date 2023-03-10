@@ -9,4 +9,9 @@
 	<body data-sveltekit-preload-data="hover">
 		<div style="display: contents">%sveltekit.body%</div>
 	</body>
+	<svelte:head>
+		<script defer async
+			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYUSwacoN5Y73lpgjJpYWT-5H2-3l9ct4&callback=initMap&libraries=places">
+			</script>
+	</svelte:head>
 </html>
