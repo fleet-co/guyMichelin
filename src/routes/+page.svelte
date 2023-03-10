@@ -50,12 +50,12 @@
 		height: 100vh;
 	}
   .mainInput {
-		width: 202px;
-		height: 38px;
+		width: 80%;
+		height: 20px;
 		background: #FFFFFF;
 		border: 1px solid #000000;
 		border-radius: 12px;
-
+		padding: 16px;
 	}
 	.title {
 		color: white;
