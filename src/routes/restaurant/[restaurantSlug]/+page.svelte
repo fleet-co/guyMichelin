@@ -3,12 +3,11 @@
   const restaurant = data.restaurant;
 </script>
 
-<img
-  class="imageResto"
-  src="https://www.bofrost.fr/medias/05236-FR-raviolis-au-fromage-tomate-et-basilic-pic1.jpg-W920xH575R1.6?context=bWFzdGVyfHByb2R1Y3QtaW1hZ2VzfDI1Njg3M3xpbWFnZS9qcGVnfHByb2R1Y3QtaW1hZ2VzL2hlMi9oMGQvOTE4NjE4OTA4MjY1NC5qcGd8Y2EyMWM1YmVmZWIxMWUxNzA5YmFhZTE5NmJjYTk2NGVkY2YwMmEyZDRjYWEyMGVlZjIwNzNlM2QyMjQzMDI2YQ"
-/>
-
 <main>
+  <img
+    class="imageResto"
+    src="https://www.bofrost.fr/medias/05236-FR-raviolis-au-fromage-tomate-et-basilic-pic1.jpg-W920xH575R1.6?context=bWFzdGVyfHByb2R1Y3QtaW1hZ2VzfDI1Njg3M3xpbWFnZS9qcGVnfHByb2R1Y3QtaW1hZ2VzL2hlMi9oMGQvOTE4NjE4OTA4MjY1NC5qcGd8Y2EyMWM1YmVmZWIxMWUxNzA5YmFhZTE5NmJjYTk2NGVkY2YwMmEyZDRjYWEyMGVlZjIwNzNlM2QyMjQzMDI2YQ"
+  />
   <h1>{restaurant?.name}</h1>
   <p>{restaurant?.address}</p>
   <h2>Autres avis</h2>
@@ -56,6 +55,8 @@
 <style>
   main {
     padding: 24px;
+    background-color: #edf1d6;
+    height: 100vh;
   }
   .imageResto {
     width: 100%;
