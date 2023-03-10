@@ -5,9 +5,12 @@
   import { user } from "../stores/authStore.js";
   import { supabase } from "$lib/utils/SupabaseClient";
 
+  // user.set(supabase.auth.user());
+  // console.log("initial", supabase.auth.user());
+
   supabase.auth.onAuthStateChange((_, session) => {
     user.set(session?.user);
-    console.log("login stored");
+    console.log("login stored : ", session?.user);
   });
 </script>
 
@@ -24,6 +27,7 @@
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    font-family: "Inter", sans-serif;
   }
 
   main {
