@@ -16,8 +16,8 @@
     <p class="card-title">{restaurant.name || "MAGASIN DE POULET"}</p>
     <p class="emoji-de-lenfer">😍 🫃🏻 💸 🤤</p>
     <p class="pas-de-marge">
-      <a on:click={() => goto("/restaurant/" + restaurant.slug)}
-        >voir en details</a
+      <a class="lien-details" on:click={() => goto("/restaurant/" + restaurant.slug)}
+        >voir en details -></a
       >
     </p>
   </div>
@@ -69,4 +69,8 @@
     padding: 0;
     align-self: flex-end;
   }
+	.lien-details {
+		cursor: pointer;
+		color: black;
+	}
 </style>
