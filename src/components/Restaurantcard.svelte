@@ -1,7 +1,6 @@
 <script>
-  // @ts-nocheck
   import cardImg from "../lib/images/libanese-resto.png";
-
+  import { goto } from "$app/navigation";
   export let restaurant;
 
   let container;
@@ -16,7 +15,11 @@
   <div class="details-container">
     <p class="card-title">{restaurant.name || "MAGASIN DE POULET"}</p>
     <p class="emoji-de-lenfer">😍 🫃🏻 💸 🤤</p>
-    <p class="pas-de-marge">voir en details =></p>
+    <p class="pas-de-marge">
+      <a on:click={() => goto("/restaurant/" + restaurant.slug)}
+        >voir en details</a
+      >
+    </p>
   </div>
 </div>
 
