@@ -13,6 +13,13 @@
     rating_regalade: 3,
   };
 
+  const criteriaNiceName = {
+    rating_calage: "Calage",
+    rating_prix: "Prix",
+    rating_qualite: "Qualité",
+    rating_regalade: "Regalade",
+  };
+
   let isReviewing = false;
 
   const handleChange = (criteria, score) => {
@@ -39,15 +46,18 @@
   <p>{restaurant?.address}</p>
   <div class="titleReviewContainer">
     <h2>Autres avis</h2>
-    <Button onClick={() => (isReviewing = !isReviewing)} />
+    <Button
+      buttonText={isReviewing ? "Annuler" : "Ajouter un avis"}
+      onClick={() => (isReviewing = !isReviewing)}
+    />
   </div>
   {#if isReviewing}
     <div>
       {#each Object.entries(scores) as [criteria, score]}
-        <div>{criteria}: {score}</div>
+        <div>{criteriaNiceName[criteria]}: {score}</div>
         <CriteriaSelector {criteria} onChange={handleChange} />
       {/each}
-      <Button onClick={addReview} />
+      <Button onClick={addReview} buttonText="Valider" />
     </div>
   {/if}
   {#each restaurant?.reviews as review}
@@ -95,12 +105,13 @@
   main {
     padding: 24px;
     background-color: #edf1d6;
-    height: 100vh;
+    height: 100%;
   }
 
   .titleReviewContainer {
     display: flex;
     flex-direction: row;
+    gap: 16px;
   }
   .imageResto {
     width: 100%;
