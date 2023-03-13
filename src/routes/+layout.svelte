@@ -29,6 +29,12 @@
     min-height: 100vh;
     font-family: "Inter", sans-serif;
   }
+  * {
+    margin: 0;
+    padding: 0;
+    font-size: 1em;
+    font-family: inherit;
+  }
 
   main {
     flex: 1;

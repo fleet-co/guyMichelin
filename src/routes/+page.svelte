@@ -8,7 +8,9 @@
   let restaurants = [];
 
   onMount(async () => {
-    const { data, error } = await supabase.from("restaurants").select();
+    const { data, error } = await supabase
+      .from("restaurants")
+      .select(`*, reviews(*)`);
     restaurants = data;
   });
 </script>
@@ -42,7 +44,7 @@
     justify-content: center;
     align-items: center;
     background-color: #9dc08b;
-    width: 40vw;
+    width: max(40vw, 300px);
     height: 100vh;
     gap: 16px;
   }

@@ -8,15 +8,41 @@
   let zoom = 21;
   let center = { lat: 48.878585, lng: 2.325271 };
   let input;
+
+  const getCalculatedScore = (criteria) => {
+    const score =
+      restaurant.reviews.reduce((acc, review) => acc + review[criteria], 0) /
+      (restaurant.reviews.length + 1);
+    return score.toFixed(0);
+  };
 </script>
 
 <div class="restaurant-card">
   <img class="image-du-resto" src={cardImg} alt="" />
   <div class="details-container">
     <p class="card-title">{restaurant.name || "MAGASIN DE POULET"}</p>
-    <p class="emoji-de-lenfer">😍 🫃🏻 💸 🤤</p>
+    <div class="criteriaWrapper">
+      <div class="criteriaContainer">
+        <p class="emoji-de-lenfer">😍</p>
+        <p class="ratingText">{getCalculatedScore("rating_qualite")}</p>
+      </div>
+      <div class="criteriaContainer">
+        <p class="emoji-de-lenfer">🫃🏻</p>
+        <p class="ratingText">{getCalculatedScore("rating_calage")}</p>
+      </div>
+      <div class="criteriaContainer">
+        <p class="emoji-de-lenfer">💸</p>
+        <p class="ratingText">{getCalculatedScore("rating_prix")}</p>
+      </div>
+      <div class="criteriaContainer">
+        <p class="emoji-de-lenfer">🤤</p>
+        <p class="ratingText">{getCalculatedScore("rating_regalade")}</p>
+      </div>
+    </div>
     <p class="pas-de-marge">
-      <a class="lien-details" on:click={() => goto("/restaurant/" + restaurant.slug)}
+      <a
+        class="lien-details"
+        on:click={() => goto("/restaurant/" + restaurant.slug)}
         >voir en details -></a
       >
     </p>
@@ -59,18 +85,31 @@
     width: 70%;
     height: 100%;
   }
+  .criteriaWrapper {
+    display: flex;
+    flex-direction: row;
+  }
+  .criteriaContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
   .emoji-de-lenfer {
-    font-size: 50px;
+    font-size: 24px;
     margin: 0;
     padding: 0;
+  }
+  .ratingText {
+    margin: 0;
   }
   .pas-de-marge {
     margin: 0;
     padding: 0;
     align-self: flex-end;
   }
-	.lien-details {
-		cursor: pointer;
-		color: black;
-	}
+  .lien-details {
+    cursor: pointer;
+    color: black;
+  }
 </style>
